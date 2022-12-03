@@ -1,3 +1,6 @@
+# My bash scripts
+*.sh
+
 # Logs
 logs
 *.log
