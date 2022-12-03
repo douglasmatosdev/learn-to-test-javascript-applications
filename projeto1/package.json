@@ -5,7 +5,8 @@
   "author": "douglasmatosdev",
   "license": "MIT",
   "scripts": {
-    "test": ""
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "devDependencies": {
     "@types/jest": "^29.2.3",
