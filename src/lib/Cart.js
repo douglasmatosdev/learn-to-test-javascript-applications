@@ -1,5 +1,10 @@
 import remove from 'lodash/remove';
 import find from 'lodash/find';
+import Dinero from 'dinero.js';
+
+const Money = Dinero;
+Money.defaultCurrency = 'BRL';
+Money.defaultPrecision = 2;
 
 export default class Cart {
   items = [];
@@ -19,12 +24,12 @@ export default class Cart {
 
   getTotal() {
     return this.items.reduce((acc, item) => {
-      return acc + item.quantity * item.product.price;
-    }, 0);
+      return acc.add(Money({ amount: item.quantity * item.product.price }));
+    }, Money({ amount: 0 }));
   }
 
   summary() {
-    const total = this.getTotal();
+    const total = this.getTotal().getAmount();
     const items = this.items;
 
     return {
