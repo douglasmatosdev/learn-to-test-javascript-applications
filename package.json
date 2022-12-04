@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "test:debug": "ndb jest"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
@@ -15,6 +16,7 @@
     "@types/jest": "^29.2.3",
     "babel-jest": "^29.3.1",
     "jest": "^29.3.1",
+    "ndb": "^1.1.5",
     "prettier": "^2.8.0"
   },
   "dependencies": {
