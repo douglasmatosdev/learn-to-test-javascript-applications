@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "One title",
+    "price": "12.33"
+  },
+  {
+    "id": 2,
+    "title": "Another title",
+    "price": "22.44"
+  },
+  {
+    "id": 3,
+    "title": "More one title",
+    "price": "30.55"
+  },
+  {
+    "id": 4,
+    "title": "More more one tile",
+    "price": "20.41"
+  }
+]
