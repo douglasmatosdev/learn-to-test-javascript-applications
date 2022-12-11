@@ -54,9 +54,20 @@ describe('ProductList', () => {
     });
   });
 
-  it.todo('should render the Search component');
+  fit('should filter the product list when a search is performed', async () => {
+    server.createList('product', 2);
 
-  it.todo('should filter the product list when a search is performed');
+    server.create('product', {
+      title: 'Relógio bonito',
+    });
+
+    renderProductList();
+
+    await waitFor(() => {
+      screen.getAllByTestId('product-card');
+      screen.debug();
+    });
+  });
 
   it.todo('should display the total quantity of products');
 
