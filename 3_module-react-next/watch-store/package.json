@@ -7,6 +7,10 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
+    "test:unit": "jest --config=jest-unit.config.js",
+    "unit:watch": "jest --config=jest-unit.config.js --watchAll",
+    "test:integration:": "jest --config=jest-integration.config.js",
+    "integration:watch": "jest --config=jest-integration.config.js --watchAll",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage"
   },
