@@ -8,6 +8,7 @@ module.exports = {
     '!**/*.d.ts',
     '!**/node_modules/**',
     '!<rootDir>/miragejs/**',
+    '!<rootDir>/pages/_app.js',
     '!<rootDir>/out/**',
     '!<rootDir>/.next/**',
     '!<rootDir>/*.config.js',
