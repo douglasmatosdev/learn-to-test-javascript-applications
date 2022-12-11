@@ -1,7 +1,8 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import ProductList from '../pages';
 import { makeServer } from '../miragejs/server';
 import { Response } from 'miragejs';
+import userEvent from '@testing-library/user-event';
 
 const renderProductList = () => {
   render(<ProductList />);
@@ -55,17 +56,27 @@ describe('ProductList', () => {
   });
 
   fit('should filter the product list when a search is performed', async () => {
+    const searchTerm = 'Relógio bonito';
     server.createList('product', 2);
 
     server.create('product', {
-      title: 'Relógio bonito',
+      title: searchTerm,
     });
 
     renderProductList();
 
     await waitFor(() => {
-      screen.getAllByTestId('product-card');
-      screen.debug();
+      expect(screen.getAllByTestId('product-card')).toHaveLength(3);
+    });
+
+    const form = screen.getByRole('form');
+    const input = screen.getByRole('searchbox');
+
+    await userEvent.type(input, searchTerm);
+    await fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('product-card')).toHaveLength(1);
     });
   });
 
