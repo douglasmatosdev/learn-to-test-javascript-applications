@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-
+import { makeServer } from '../miragejs/server';
 import Cart from '../components/cart';
 
 function MyApp({ Component, pageProps }) {
