@@ -1,6 +1,6 @@
 import ProductCard from '../components/product-card';
 import Search from '../components/search';
-import { useFetchProducts } from '../hooks/useFetchProducts';
+import { useFetchProducts } from '../hooks/use-fetch-products';
 
 export default function Home() {
   const { products, error } = useFetchProducts();
