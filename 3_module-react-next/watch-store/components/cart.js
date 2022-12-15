@@ -1,8 +1,9 @@
 import CartItem from './cart-item';
 import { useCartStore } from '../store/cart';
+import product from '../miragejs/factories/product';
 
 export default function Cart() {
-  const open = useCartStore((store) => store.state.open);
+  const { open, products } = useCartStore((store) => store.state);
   const toggle = useCartStore((store) => store.actions.toggle);
   return (
     <div
@@ -27,7 +28,9 @@ export default function Cart() {
         </button>
       </div>
       <hr className="my-3" />
-      <CartItem product={{}} />
+      {products.map((product) => (
+        <CartItem product={product} key={product.id} />
+      ))}
       <div className="mt-8">
         <form className="flex items-center justify-center">
           <input className="form-input w-48" type="text" placeholder="Add promocode" />
