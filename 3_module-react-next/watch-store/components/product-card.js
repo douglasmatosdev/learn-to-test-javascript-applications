@@ -11,7 +11,6 @@ export default function ProductCard({ product, addToCart }) {
         >
           <button
             onClick={() => {
-              console.log(product, addToCart);
               addToCart(product);
             }}
             className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
