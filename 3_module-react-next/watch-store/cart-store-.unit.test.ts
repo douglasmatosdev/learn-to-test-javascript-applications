@@ -4,36 +4,33 @@ import { useCartStore } from './store/cart';
 import { makeServer } from './miragejs/server';
 describe('Cart Store', () => {
   let server;
+  let result;
+  let toggle;
+  let add;
 
   beforeEach(() => {
     server = makeServer({ environment: 'test' });
+    result = renderHook(() => useCartStore()).result;
+    toggle = result.current.actions.toggle;
+    add = result.current.actions.add;
   });
 
   afterEach(() => {
     server.shutdown();
+    act(() => result.current.actions.reset());
   });
 
   it('should return equals false on initial state', async () => {
-    const { result } = renderHook(() => useCartStore());
-
     expect(result.current.state.open).toBe(false);
   });
 
   it('should return an empty array for products on initial state', () => {
-    const { result } = renderHook(() => useCartStore());
-
     expect(Array.isArray(result.current.state.products)).toBe(true);
     expect(result.current.state.products).toHaveLength(0);
   });
 
-  it('should ', async () => {
+  it('should add 2 product to the list', async () => {
     const products = server.createList('product', 2);
-
-    const { result } = renderHook(() => useCartStore());
-
-    const {
-      actions: { add },
-    } = result.current;
 
     for (const product of products) {
       act(() => add(product));
@@ -43,11 +40,6 @@ describe('Cart Store', () => {
   });
 
   it('should toggle open state', async () => {
-    const { result } = renderHook(() => useCartStore());
-    const {
-      actions: { toggle },
-    } = result.current;
-
     expect(result.current.state.open).toBe(false);
 
     act(() => toggle());
