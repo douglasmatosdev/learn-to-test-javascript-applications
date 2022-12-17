@@ -1,9 +1,12 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { screen, render } from '@testing-library/react';
 import { useCartStore } from '../store/cart';
 import { makeServer } from '../miragejs/server';
+import { setAutoFreeze } from 'immer';
 import userEvent from '@testing-library/user-event';
 import Cart from './cart';
+
+setAutoFreeze(false);
 
 describe('Cart', () => {
   let server;
@@ -17,8 +20,8 @@ describe('Cart', () => {
     server = makeServer({ environment: 'test' });
     result = renderHook(() => useCartStore()).result;
     add = result.current.actions.add;
-    toggle = result.current.actions.toggle;
     reset = result.current.actions.reset;
+    toggle = result.current.actions.toggle;
     spy = jest.spyOn(result.current.actions, 'toggle');
   });
 
@@ -27,13 +30,13 @@ describe('Cart', () => {
     jest.clearAllMocks();
   });
 
-  it('should add css "hidden" in the component', () => {
+  it('should add css class "hidden" in the component', () => {
     render(<Cart />);
 
     expect(screen.getByTestId('cart')).toHaveClass('hidden');
   });
 
-  it('should add css "hidden" in the component', () => {
+  it('should add css class "hidden" in the component', () => {
     act(() => {
       toggle();
     });
@@ -49,14 +52,14 @@ describe('Cart', () => {
     const button = screen.getByTestId('close-button');
 
     act(() => {
-      userEvent.click(button);
+      toggle();
       userEvent.click(button);
     });
 
-    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should display 2 prodcts cards', () => {
+  it('should display 2 products cards', () => {
     const products = server.createList('product', 2);
 
     act(() => {
