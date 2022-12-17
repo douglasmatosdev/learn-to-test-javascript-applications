@@ -51,7 +51,6 @@ describe('Cart', () => {
     act(() => {
       userEvent.click(button);
       userEvent.click(button);
-      userEvent.click(button);
     });
 
     expect(spy).toHaveBeenCalledTimes(2);
