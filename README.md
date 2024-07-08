@@ -6,4 +6,4 @@
 
 - [Module 2 - Vue/Nuxt](./2_module-vue-nuxt/)
 
-- [Module 3 - Vue/Nuxt](./3_module-react-next/)
+- [Module 3 - React/Next](./3_module-react-next/)
