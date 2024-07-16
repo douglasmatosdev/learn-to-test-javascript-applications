@@ -7,3 +7,5 @@
 - [Module 2 - Vue/Nuxt](./2_module-vue-nuxt/)
 
 - [Module 3 - React/Next](./3_module-react-next/)
+
+- [Module 4 - Node/Express](./4_module-node-express/)
